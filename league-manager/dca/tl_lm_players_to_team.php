@@ -41,6 +41,14 @@ $GLOBALS['TL_DCA']['tl_lm_players_to_team'] = array
 		'dataContainer'               => 'Table',
 		'ptable'                      => 'tl_lm_players',
 		'enableVersioning'            => true,
+		'sql' => array
+		(
+			'keys' => array
+			(
+				'id' => 'primary',
+				'pid' => 'index'
+			)
+		)
 	),
 
 	// List
@@ -117,13 +125,26 @@ $GLOBALS['TL_DCA']['tl_lm_players_to_team'] = array
 	// Fields
 	'fields' => array
 	(
+		'id' => array
+		(
+			'sql'                     => "int(10) unsigned NOT NULL auto_increment"
+		),
+		'tstamp' => array
+		(
+			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+		),
+		'pid' => array
+		(
+			'sql'                     => "int(10) NOT NULL default '0'"
+		),
 		'team' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_players_to_team']['team'],
 			'exclude'                 => false,
 			'inputType'               => 'select',
 			'eval'                    => array(),
-			'options_callback'        => array('tl_lm_players_to_team', 'getTeams')
+			'options_callback'        => array('tl_lm_players_to_team', 'getTeams'),
+			'sql'                     => "int(10) NOT NULL default '0'"
 		),
 		'date_from' => array
 		(
@@ -131,7 +152,8 @@ $GLOBALS['TL_DCA']['tl_lm_players_to_team'] = array
 			'exclude'                 => false,
 			'filter'				  => true,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'rgxp'=>'date', 'datepicker'=>$this->getDatePickerString(), 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>false, 'rgxp'=>'date', 'datepicker'=>$this->getDatePickerString(), 'tl_class'=>'w50'),
+			'sql'                     => "int(10) NOT NULL default '0'"
 		),
 		'date_to' => array
 		(
@@ -139,7 +161,12 @@ $GLOBALS['TL_DCA']['tl_lm_players_to_team'] = array
 			'exclude'                 => false,
 			'filter'				  => true,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'rgxp'=>'date', 'datepicker'=>$this->getDatePickerString(), 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>false, 'rgxp'=>'date', 'datepicker'=>$this->getDatePickerString(), 'tl_class'=>'w50'),
+			'sql'                     => "int(10) NOT NULL default '0'"
+		),
+		'club' => array
+		(
+			'sql'                     => "int(10) NOT NULL default '0'"
 		)
 	)
 );

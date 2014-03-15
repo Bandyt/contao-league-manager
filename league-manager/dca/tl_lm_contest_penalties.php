@@ -40,7 +40,15 @@ $GLOBALS['TL_DCA']['tl_lm_contest_penalties'] = array
 	(
 		'dataContainer'               => 'Table',
 		'ptable'                      => 'tl_lm_contests',
-		'enableVersioning'            => true
+		'enableVersioning'            => true,
+		'sql' => array
+		(
+			'keys' => array
+			(
+				'id' => 'primary',
+				'pid' => 'index'
+			)
+		)
 	),
 
 	// List
@@ -118,12 +126,25 @@ $GLOBALS['TL_DCA']['tl_lm_contest_penalties'] = array
 	// Fields
 	'fields' => array
 	(
+		'id' => array
+		(
+			'sql'                     => "int(10) unsigned NOT NULL auto_increment"
+		),
+		'tstamp' => array
+		(
+			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+		),
+		'pid' => array
+		(
+			'sql'                     => "int(10) NOT NULL default '0'"
+		),
 		'team' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_contest_penalties']['team'],
 			'exclude'                 => false,
 			'inputType'               => 'select',
-			'options_callback' 		  => array('tl_lm_contest_penalties', 'getTeams')
+			'options_callback' 		  => array('tl_lm_contest_penalties', 'getTeams'),
+			'sql'					  => "int(10) NULL default NULL"
 		),
 		'points' => array
 		(
@@ -131,14 +152,16 @@ $GLOBALS['TL_DCA']['tl_lm_contest_penalties'] = array
 			'exclude'                 => false,
 			'inputType'               => 'text',
 			'filter'				  => true,
-			'eval'                    => array('mandatory'=>false, 'maxlength'=>255)
+			'eval'                    => array('mandatory'=>false, 'maxlength'=>255),
+			'sql'					  => "int(10) NOT NULL default '0'"
 		),
 		'reason' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_contest_penalties']['reason'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'maxlength'=>255)
+			'eval'                    => array('mandatory'=>false, 'maxlength'=>255),
+			'sql'					  => "varchar(255) NOT NULL default ''"
 		)
 	)
 );

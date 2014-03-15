@@ -44,6 +44,14 @@ $GLOBALS['TL_DCA']['tl_lm_matches'] = array
 		'onsubmit_callback' => array
 		(
 			array('tl_lm_matches', 'adjustTime')
+		),
+		'sql' => array
+		(
+			'keys' => array
+			(
+				'id' => 'primary',
+				'pid' => 'index'
+			)
 		)
 	),
 
@@ -106,7 +114,7 @@ $GLOBALS['TL_DCA']['tl_lm_matches'] = array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_lm_matches']['reports'],
 				'href'                => 'table=tl_lm_match_reports',
-				'icon'                => 'system/modules/league-manager/images/report.png'
+				'icon'                => 'system/modules/league-manager/assets/report.png'
 			),
 			'events' => array
 			(
@@ -136,6 +144,18 @@ $GLOBALS['TL_DCA']['tl_lm_matches'] = array
 	// Fields
 	'fields' => array
 	(
+		'id' => array
+		(
+			'sql'                     => "int(10) unsigned NOT NULL auto_increment"
+		),
+		'tstamp' => array
+		(
+			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+		),
+		'pid' => array
+		(
+			'sql'                     => "int(10) NOT NULL default '0'"
+		),
 		'startdate' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_matches']['startdate'],
@@ -143,7 +163,8 @@ $GLOBALS['TL_DCA']['tl_lm_matches'] = array
 			'filter'				  => true,
 			'default'				  => '0',
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false,'rgxp'=>'date', 'datepicker'=>$this->getDatePickerString(), 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>false,'rgxp'=>'date', 'datepicker'=>$this->getDatePickerString(), 'tl_class'=>'w50'),
+			'sql'                     => "int(10) NOT NULL default '0'"
 		),
 		'starttime' => array
 		(
@@ -151,7 +172,8 @@ $GLOBALS['TL_DCA']['tl_lm_matches'] = array
 			'exclude'                 => false,
 			'default'                 => '0',
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'rgxp'=>'time','tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>false, 'rgxp'=>'time','tl_class'=>'w50'),
+			'sql'                     => "int(10) NOT NULL default '0'"
 		),
 		'enddate' => array
 		(
@@ -160,7 +182,8 @@ $GLOBALS['TL_DCA']['tl_lm_matches'] = array
 			'filter'				  => true,
 			'default'				  => '0',
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false,'rgxp'=>'date', 'datepicker'=>$this->getDatePickerString(), 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>false,'rgxp'=>'date', 'datepicker'=>$this->getDatePickerString(), 'tl_class'=>'w50'),
+			'sql'                     => "int(10) NOT NULL default '0'"
 		),
 		'endtime' => array
 		(
@@ -168,7 +191,8 @@ $GLOBALS['TL_DCA']['tl_lm_matches'] = array
 			'exclude'                 => false,
 			'default'                 => '0',
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'rgxp'=>'time','tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>false, 'rgxp'=>'time','tl_class'=>'w50'),
+			'sql'                     => "int(10) NOT NULL default '0'"
 		),
 		'team_home' => array
 		(
@@ -177,7 +201,8 @@ $GLOBALS['TL_DCA']['tl_lm_matches'] = array
 			'filter'				  => true,
 			'inputType'               => 'select',
 			'eval'                    => array('mandatory'=>false, 'tl_class'=>'w50','includeBlankOption'=>true),
-			'options_callback'        => array('tl_lm_matches', 'getTeams')
+			'options_callback'        => array('tl_lm_matches', 'getTeams'),
+			'sql'                     => "int(10) NOT NULL default '0'"
 		),
 		'score_home' => array
 		(
@@ -185,7 +210,8 @@ $GLOBALS['TL_DCA']['tl_lm_matches'] = array
 			'exclude'                 => false,
 			'filter'				  => true,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'maxlength'=>255, 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>false, 'maxlength'=>255, 'tl_class'=>'w50'),
+			'sql'                     => "varchar(20) NOT NULL default ''"
 		),
 		'team_away' => array
 		(
@@ -194,7 +220,8 @@ $GLOBALS['TL_DCA']['tl_lm_matches'] = array
 			'filter'				  => true,
 			'inputType'               => 'select',
 			'eval'                    => array('mandatory'=>false, 'tl_class'=>'w50','includeBlankOption'=>true),
-			'options_callback'        => array('tl_lm_matches', 'getTeams')
+			'options_callback'        => array('tl_lm_matches', 'getTeams'),
+			'sql'                     => "int(10) NOT NULL default '0'"
 		),
 		'score_away' => array
 		(
@@ -202,28 +229,32 @@ $GLOBALS['TL_DCA']['tl_lm_matches'] = array
 			'exclude'                 => false,
 			'inputType'               => 'text',
 			'filter'				  => true,
-			'eval'                    => array('mandatory'=>false, 'maxlength'=>255, 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>false, 'maxlength'=>255, 'tl_class'=>'w50'),
+			'sql'                     => "varchar(20) NOT NULL default ''"
 		),
 		'different_points' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_matches']['different_points'],
 			'exclude'                 => false,
 			'inputType'               => 'checkbox',
-			'eval'                    => array('mandatory'=>false,'submitOnChange'=>true)
+			'eval'                    => array('mandatory'=>false,'submitOnChange'=>true),
+			'sql'                     => "char(1) NOT NULL default ''"
 		),
 		'points_home' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_matches']['points_home'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>false, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50'),
+			'sql'                     => "int(10) NOT NULL default '0'"
 		),
 		'points_away' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_matches']['points_away'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>false, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50'),
+			'sql'                     => "int(10) NOT NULL default '0'"
 		),
 		'result_confirmed' => array
 		(
@@ -231,7 +262,8 @@ $GLOBALS['TL_DCA']['tl_lm_matches'] = array
 			'exclude'                 => false,
 			'inputType'               => 'checkbox',
 			'filter'				  => true,
-			'eval'                    => array('mandatory'=>false)
+			'eval'                    => array('mandatory'=>false),
+			'sql'                     => "char(1) NOT NULL default ''"
 		),
 		'venue' => array
 		(
@@ -240,56 +272,72 @@ $GLOBALS['TL_DCA']['tl_lm_matches'] = array
 			'inputType'               => 'select',
 			'options'				  => array('H','A','O'),
 			'reference'				  => &$GLOBALS['TL_LANG']['tl_lm_matches']['venue']['reference'],
-			'eval'                    => array('mandatory'=>true, 'tl_class'=>'clr','submitOnChange'=>true)
+			'eval'                    => array('mandatory'=>true, 'tl_class'=>'clr','submitOnChange'=>true),
+			'sql'                     => "char(1) NOT NULL default ''"
 		),
 		'location' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_matches']['location'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'maxlength'=>255)
+			'eval'                    => array('mandatory'=>false, 'maxlength'=>255),
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'street' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_matches']['street'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'maxlength'=>255)
+			'eval'                    => array('mandatory'=>false, 'maxlength'=>255),
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'zip' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_matches']['zip'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>false, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50'),
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'city' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_matches']['city'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'maxlength'=>30, 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>false, 'maxlength'=>30, 'tl_class'=>'w50'),
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'region' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_matches']['region'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'maxlength'=>255)
+			'eval'                    => array('mandatory'=>false, 'maxlength'=>255),
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'website' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_matches']['website'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'maxlength'=>255)
+			'eval'                    => array('mandatory'=>false, 'maxlength'=>255),
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'picture' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_matches']['picture'],
 			'exclude'                 => false,
 			'inputType'               => 'fileTree',
-			'eval'                    => array('mandatory'=>false, 'fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true)
+			'eval'                    => array('mandatory'=>false, 'fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true),
+			'sql'                     => "char(1) NOT NULL default ''"
+		),
+		'hasinternal_page' => array
+		(
+			'sql'                     => "char(1) NOT NULL default ''"
+		),
+		'internal_page' => array
+		(
+			'sql'                     => "int(10) NOT NULL default '0'"
 		)
 	)
 );

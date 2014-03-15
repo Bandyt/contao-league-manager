@@ -44,6 +44,14 @@ $GLOBALS['TL_DCA']['tl_lm_contests'] = array
 		'onsubmit_callback' => array
 		(
 			array('tl_lm_contests', 'fillITable')
+		),
+		'sql' => array
+		(
+			'keys' => array
+			(
+				'id' => 'primary',
+				'pid' => 'index'
+			)
 		)
 	),
 
@@ -111,14 +119,14 @@ $GLOBALS['TL_DCA']['tl_lm_contests'] = array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_lm_contests']['rounds'],
 				'href'                => 'table=tl_lm_rounds',
-				'icon'                => 'system/modules/league-manager/images/rounds.gif',
+				'icon'                => 'system/modules/league-manager/assets/rounds.gif',
 				'attributes'          => 'class="contextmenu"'
 			),
 			'penalties' => array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_lm_contests']['penalties'],
 				'href'                => 'table=tl_lm_contest_penalties',
-				'icon'                => 'system/modules/league-manager/images/penalty.png',
+				'icon'                => 'system/modules/league-manager/assets/penalty.png',
 				'attributes'          => 'class="contextmenu"'
 			)
 		)
@@ -140,20 +148,34 @@ $GLOBALS['TL_DCA']['tl_lm_contests'] = array
 	// Fields
 	'fields' => array
 	(
+		'id' => array
+		(
+			'sql'                     => "int(10) unsigned NOT NULL auto_increment"
+		),
+		'tstamp' => array
+		(
+			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+		),
+		'pid' => array
+		(
+			'sql'                     => "int(10) NOT NULL default '0'"
+		),
 		'name' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_contests']['name'],
 			'exclude'                 => false,
 			'filter'				  => true,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>255)
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>255),
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'shortname' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_contests']['shortname'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>'alnum', 'unique'=>true,)
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>'alnum', 'unique'=>true,),
+			'sql'                     => "varchar(10) NOT NULL default ''"
 		),
 		'sortstring' => array
 		(
@@ -161,7 +183,8 @@ $GLOBALS['TL_DCA']['tl_lm_contests'] = array
 			'exclude'                 => false,
 			'inputType'               => 'text',
 			'filter'				  => true,
-			'eval'                    => array('mandatory'=>false, 'maxlength'=>255)
+			'eval'                    => array('mandatory'=>false, 'maxlength'=>255),
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'mode' => array
 		(
@@ -171,7 +194,8 @@ $GLOBALS['TL_DCA']['tl_lm_contests'] = array
 			'inputType'               => 'select',
 			'options'				  => array('L','T'),
 			'reference'				  => &$GLOBALS['TL_LANG']['tl_lm_contests']['mode']['reference'],
-			'eval'                    => array('mandatory'=>true)
+			'eval'                    => array('mandatory'=>true),
+			'sql'                     => "char(1) NOT NULL default ''"
 		),
 		'pairing' => array
 		(
@@ -181,7 +205,8 @@ $GLOBALS['TL_DCA']['tl_lm_contests'] = array
 			'inputType'               => 'select',
 			'options'				  => array('T','P'),
 			'reference'				  => &$GLOBALS['TL_LANG']['tl_lm_contests']['pairing']['reference'],
-			'eval'                    => array('mandatory'=>true)
+			'eval'                    => array('mandatory'=>true),
+			'sql'                     => "char(1) NOT NULL default ''"
 		),
 		'date_start' => array
 		(
@@ -189,14 +214,16 @@ $GLOBALS['TL_DCA']['tl_lm_contests'] = array
 			'exclude'                 => false,
 			'filter'				  => true,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'rgxp'=>'date', 'datepicker'=>$this->getDatePickerString(), 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>true, 'rgxp'=>'date', 'datepicker'=>$this->getDatePickerString(), 'tl_class'=>'w50'),
+			'sql'                     => "varchar(10) NOT NULL default ''"
 		),
 		'date_end' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_contests']['date_end'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'rgxp'=>'date', 'datepicker'=>$this->getDatePickerString(), 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>true, 'rgxp'=>'date', 'datepicker'=>$this->getDatePickerString(), 'tl_class'=>'w50'),
+			'sql'                     => "varchar(10) NOT NULL default ''"
 		),
 		'teams' => array
 		(
@@ -204,49 +231,56 @@ $GLOBALS['TL_DCA']['tl_lm_contests'] = array
 			'exclude'                 => false,
 			'inputType'               => 'select',
 			'options_callback'        => array('tl_lm_contests', 'getTeams'),
-			'eval'                    => array('multiple'=>true)
+			'eval'                    => array('multiple'=>true),
+			'sql'                     => "blob NULL"
 		),
 		'home_wins_points_home' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_contests']['home_wins_points_home'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50'),
+			'sql'                     => "int(10) NULL default NULL"
 		),
 		'home_wins_points_away' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_contests']['home_wins_points_away'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50'),
+			'sql'                     => "int(10) NULL default NULL"
 		),
 		'draw_points_home' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_contests']['draw_points_home'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50'),
+			'sql'                     => "int(10) NULL default NULL"
 		),
 		'draw_points_away' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_contests']['draw_points_away'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50'),
+			'sql'                     => "int(10) NULL default NULL"
 		),
 		'away_wins_points_home' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_contests']['away_wins_points_home'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50'),
+			'sql'                     => "int(10) NULL default NULL"
 		),
 		'away_wins_points_away' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_contests']['away_wins_points_away'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50')
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50'),
+			'sql'                     => "int(10) NULL default NULL"
 		),
 		'create_rounds' => array
 		(
@@ -261,7 +295,8 @@ $GLOBALS['TL_DCA']['tl_lm_contests'] = array
 			'load_callback' => array
 			(
 				array('tl_lm_contests', 'load_create_rounds')
-			)
+			),
+			'sql'                     => "int(10) NOT NULL default '0'"
 		)
 	)
 );

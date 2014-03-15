@@ -40,7 +40,15 @@ $GLOBALS['TL_DCA']['tl_lm_players'] = array
 	(
 		'dataContainer'               => 'Table',
 		'enableVersioning'            => true,
-		'ctable'                      => array('tl_lm_players_to_team')
+		'ctable'                      => array('tl_lm_players_to_team'),
+		'sql' => array
+		(
+			'keys' => array
+			(
+				'id' => 'primary',
+				'pid' => 'index'
+			)
+		)
 	),
 
 	// List
@@ -121,20 +129,34 @@ $GLOBALS['TL_DCA']['tl_lm_players'] = array
 	// Fields
 	'fields' => array
 	(
+		'id' => array
+		(
+			'sql'                     => "int(10) unsigned NOT NULL auto_increment"
+		),
+		'tstamp' => array
+		(
+			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+		),
+		'pid' => array
+		(
+			'sql'                     => "int(10) NOT NULL default '0'"
+		),
 		'name' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_players']['name'],
 			'exclude'                 => false,
 			'filter'				  => true,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>255)
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>255),
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'shortname' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_players']['shortname'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>'alnum', 'unique'=>true)
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>'alnum', 'unique'=>true),
+			'sql'                     => "varchar(10) NOT NULL default ''"
 		),
 		'sortstring' => array
 		(
@@ -142,42 +164,48 @@ $GLOBALS['TL_DCA']['tl_lm_players'] = array
 			'exclude'                 => false,
 			'filter'				  => true,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'maxlength'=>255)
+			'eval'                    => array('mandatory'=>false, 'maxlength'=>255),
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'nickname' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_players']['nickname'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'maxlength'=>255)
+			'eval'                    => array('mandatory'=>false, 'maxlength'=>255),
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'website' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_players']['website'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'maxlength'=>255, 'rgxp'=>'url')
+			'eval'                    => array('mandatory'=>false, 'maxlength'=>255, 'rgxp'=>'url'),
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'hasinternal_page'=>array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_players']['hasinternal_page'],
 			'exclude'                 => false,
 			'inputType'               => 'checkbox',
-			'eval'                    => array('submitOnChange'=>true)
+			'eval'                    => array('submitOnChange'=>true),
+			'sql'                     => "char(1) NOT NULL default ''"
 		),
 		'internal_page' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_players']['internal_page'],
 			'exclude'                 => false,
 			'inputType'               => 'pageTree',
-			'eval'                    => array('mandatory'=>false,'fieldType'=>'radio', 'tl_class'=>'clr')
+			'eval'                    => array('mandatory'=>false,'fieldType'=>'radio', 'tl_class'=>'clr'),
+			'sql'                     => "int(10) NOT NULL default '0'"
 		),
 		'picture' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_players']['picture'],
 			'exclude'                 => false,
 			'inputType'               => 'fileTree',
-			'eval'                    => array('mandatory'=>false, 'fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true)
+			'eval'                    => array('mandatory'=>false, 'fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true),
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'position' => array
 		(
@@ -185,21 +213,24 @@ $GLOBALS['TL_DCA']['tl_lm_players'] = array
 			'exclude'                 => false,
 			'filter'				  => true,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'maxlength'=>255)
+			'eval'                    => array('mandatory'=>false, 'maxlength'=>255),
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'addinfo' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_players']['addinfo'],
 			'exclude'                 => false,
 			'inputType'               => 'textarea',
-			'eval'                    => array('mandatory'=>false, 'cols'=>80, 'rows'=>40,'wrap'=>'soft')
+			'eval'                    => array('mandatory'=>false, 'cols'=>80, 'rows'=>40,'wrap'=>'soft'),
+			'sql'                     => "blob NULL"
 		),
 		'birthday' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_players']['birthday'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false,'rgxp'=>'date', 'datepicker'=>$this->getDatePickerString())
+			'eval'                    => array('mandatory'=>false,'rgxp'=>'date', 'datepicker'=>$this->getDatePickerString()),
+			'sql'                     => "varchar(10) NOT NULL default ''"
 		)
 	)
 );

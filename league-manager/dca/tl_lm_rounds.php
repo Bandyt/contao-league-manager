@@ -49,6 +49,14 @@ $GLOBALS['TL_DCA']['tl_lm_rounds'] = array
 		'onsubmit_callback' => array
 		(
 			array('tl_lm_rounds', 'processOnsubmit')
+		),
+		'sql' => array
+		(
+			'keys' => array
+			(
+				'id' => 'primary',
+				'pid' => 'index'
+			)
 		)
 	),
 
@@ -147,11 +155,24 @@ $GLOBALS['TL_DCA']['tl_lm_rounds'] = array
 	// Fields
 	'fields' => array
 	(
+		'id' => array
+		(
+			'sql'                     => "int(10) unsigned NOT NULL auto_increment"
+		),
+		'tstamp' => array
+		(
+			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+		),
+		'pid' => array
+		(
+			'sql'                     => "int(10) NOT NULL default '0'"
+		),
 		'round_no' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_rounds']['round_no'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
+			'sql'                     => "int(10) unsigned NOT NULL default '0'"
 		),
 		'name' => array
 		(
@@ -159,7 +180,8 @@ $GLOBALS['TL_DCA']['tl_lm_rounds'] = array
 			'exclude'                 => false,
 			'inputType'               => 'text',
 			'filter'				  => true,
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>255)
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>255),
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'dates_finalized' => array
 		(
@@ -167,7 +189,12 @@ $GLOBALS['TL_DCA']['tl_lm_rounds'] = array
 			'exclude'                 => false,
 			'inputType'               => 'checkbox',
 			'filter'				  => true,
-			'eval'                    => array('mandatory'=>false)
+			'eval'                    => array('mandatory'=>false),
+			'sql'                     => "char(1) NOT NULL default ''"
+		),
+		'mode' => array
+		(
+			'sql'                     => "char(1) NOT NULL default ''"
 		)
 	)
 );

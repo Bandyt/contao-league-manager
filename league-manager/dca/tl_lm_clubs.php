@@ -39,7 +39,15 @@ $GLOBALS['TL_DCA']['tl_lm_clubs'] = array
 	'config' => array
 	(
 		'dataContainer'               => 'Table',
-		'enableVersioning'            => true
+		'enableVersioning'            => true,
+		'sql' => array
+		(
+			'keys' => array
+			(
+				'id' => 'primary',
+				'pid' => 'index'
+			)
+		)
 	),
 
 	// List
@@ -121,20 +129,34 @@ $GLOBALS['TL_DCA']['tl_lm_clubs'] = array
 	// Fields
 	'fields' => array
 	(
+		'id' => array
+		(
+			'sql'                     => "int(10) unsigned NOT NULL auto_increment"
+		),
+		'tstamp' => array
+		(
+			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+		),
+		'pid' => array
+		(
+			'sql'                     => "int(10) NOT NULL default '0'"
+		),
 		'name' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_clubs']['name'],
 			'exclude'                 => false,
 			'filter'				  => true,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>255)
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>255),
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'shortname' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_clubs']['shortname'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>'alnum', 'unique'=>true)
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>'alnum', 'unique'=>true),
+			'sql'                     => "varchar(10) NOT NULL default ''"
 		),
 		'sortstring' => array
 		(
@@ -142,21 +164,32 @@ $GLOBALS['TL_DCA']['tl_lm_clubs'] = array
 			'exclude'                 => false,
 			'filter'				  => true,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'maxlength'=>255)
+			'eval'                    => array('mandatory'=>false, 'maxlength'=>255),
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'website' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_clubs']['website'],
 			'exclude'                 => false,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'maxlength'=>255, 'rgxp'=>'url')
+			'eval'                    => array('mandatory'=>false, 'maxlength'=>255, 'rgxp'=>'url'),
+			'sql'                     => "varchar(255) NULL default ''"
+		),
+		'hasinternal_page' => array
+		(
+			'sql'                     => "char(1) NOT NULL default ''"
+		),
+		'internal_page' => array
+		(
+			'sql'                     => "int(10) NOT NULL default '0'"
 		),
 		'logo' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_clubs']['logo'],
 			'exclude'                 => false,
 			'inputType'               => 'fileTree',
-			'eval'                    => array('mandatory'=>false, 'fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true)
+			'eval'                    => array('mandatory'=>false, 'fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true),
+			'sql'                     => "varchar(255) NULL default ''"
 		),
 		'ownclub' => array
 		(
@@ -164,7 +197,8 @@ $GLOBALS['TL_DCA']['tl_lm_clubs'] = array
 			'exclude'                 => false,
 			'filter'				  => true,
 			'inputType'               => 'checkbox',
-			'eval'                    => array('mandatory'=>false)
+			'eval'                    => array('mandatory'=>false),
+			'sql'                     => "char(1) NOT NULL default ''"
 		)
 	)
 );

@@ -41,6 +41,14 @@ $GLOBALS['TL_DCA']['tl_lm_match_reports'] = array
 		'dataContainer'               => 'Table',
 		'ptable'                      => 'tl_lm_matches',
 		'enableVersioning'            => true,
+		'sql' => array
+		(
+			'keys' => array
+			(
+				'id' => 'primary',
+				'pid' => 'index'
+			)
+		)
 	),
 
 	// List
@@ -117,13 +125,26 @@ $GLOBALS['TL_DCA']['tl_lm_match_reports'] = array
 	// Fields
 	'fields' => array
 	(
+		'id' => array
+		(
+			'sql'                     => "int(10) unsigned NOT NULL auto_increment"
+		),
+		'tstamp' => array
+		(
+			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+		),
+		'pid' => array
+		(
+			'sql'                     => "int(10) NOT NULL default '0'"
+		),
 		'text' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_lm_match_reports']['text'],
 			'exclude'                 => false,
 			'search'                  => true,
 			'inputType'               => 'textarea',
-			'eval'                    => array('mandatory'=>false, 'rte'=>'tinyMCE')
+			'eval'                    => array('mandatory'=>false, 'rte'=>'tinyMCE'),
+			'sql'                     => "text NULL"
 		),
 		'header' => array
 		(
@@ -131,7 +152,8 @@ $GLOBALS['TL_DCA']['tl_lm_match_reports'] = array
 			'exclude'                 => false,
 			'search'                  => true,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true)
+			'eval'                    => array('mandatory'=>true),
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'reporttype' => array
 		(
@@ -140,7 +162,8 @@ $GLOBALS['TL_DCA']['tl_lm_match_reports'] = array
 			'inputType'               => 'select',
 			'options'				  => array('P','G','A'),
 			'reference'				  => &$GLOBALS['TL_LANG']['tl_lm_match_reports']['reporttype']['reference'],
-			'eval'                    => array('mandatory'=>true)
+			'eval'                    => array('mandatory'=>true),
+			'sql'                     => "char(1) NOT NULL default ''"
 		)
 	)
 );

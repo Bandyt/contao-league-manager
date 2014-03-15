@@ -93,14 +93,16 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['lm_contest'] = array
 	'exclude'                 => false,
 	'inputType'               => 'select',
 	'eval'                    => array('mandatory'=>true),
-	'options_callback'        => array('tl_content_lm', 'getContests')
+	'options_callback'        => array('tl_content_lm', 'getContests'),
+	'sql'                     => "int(10) NOT NULL default '0'"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_showlogo'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['lm_showlogo'],
 	'exclude'                 => false,
 	'inputType'               => 'checkbox',
-	'eval'                    => array('mandatory'=>false)
+	'eval'                    => array('mandatory'=>false),
+	'sql'                     => "char(1) NOT NULL default '1'"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_team'] = array
 (
@@ -108,63 +110,72 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['lm_team'] = array
 	'exclude'                 => false,
 	'inputType'               => 'select',
 	'eval'                    => array('mandatory'=>true),
-	'options_callback'        => array('tl_content_lm', 'getTeams')
+	'options_callback'        => array('tl_content_lm', 'getTeams'),
+	'sql'                     => "int(10) NOT NULL default '0'"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_redirectplayer'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['lm_redirectplayer'],
 	'exclude'                 => false,
 	'inputType'               => 'pageTree',
-	'eval'                    => array('mandatory'=>true,'fieldType'=>'radio', 'tl_class'=>'clr')
+	'eval'                    => array('mandatory'=>true,'fieldType'=>'radio', 'tl_class'=>'clr'),
+	'sql'                     => "int(10) NOT NULL default '0'"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_redirectteam'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['lm_redirectteam'],
 	'exclude'                 => false,
 	'inputType'               => 'pageTree',
-	'eval'                    => array('mandatory'=>true,'fieldType'=>'radio', 'tl_class'=>'clr')
+	'eval'                    => array('mandatory'=>true,'fieldType'=>'radio', 'tl_class'=>'clr'),
+	'sql'                     => "int(10) NOT NULL default '0'"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_redirectmatch'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['lm_redirectmatch'],
 	'exclude'                 => false,
 	'inputType'               => 'pageTree',
-	'eval'                    => array('mandatory'=>true,'fieldType'=>'radio', 'tl_class'=>'clr')
+	'eval'                    => array('mandatory'=>true,'fieldType'=>'radio', 'tl_class'=>'clr'),
+	'sql'                     => "int(10) NOT NULL default '0'"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_redirectcontest'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['lm_redirectcontest'],
 	'exclude'                 => false,
 	'inputType'               => 'pageTree',
-	'eval'                    => array('mandatory'=>true,'fieldType'=>'radio', 'tl_class'=>'clr')
+	'eval'                    => array('mandatory'=>true,'fieldType'=>'radio', 'tl_class'=>'clr'),
+	'sql'                     => "int(10) NOT NULL default '0'"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_useredirectplayer'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['lm_useredirectplayer'],
 	'exclude'                 => false,
 	'inputType'               => 'checkbox',
-	'eval'                    => array('submitOnChange'=>true)
+	'eval'                    => array('submitOnChange'=>true),
+	'sql'                     => "char(1) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_useredirectmatch'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['lm_useredirectmatch'],
 	'exclude'                 => false,
 	'inputType'               => 'checkbox',
-	'eval'                    => array('submitOnChange'=>true)
+	'eval'                    => array('submitOnChange'=>true),
+	'sql'                     => "char(1) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_useredirectteam'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['lm_useredirectteam'],
 	'exclude'                 => false,
 	'inputType'               => 'checkbox',
-	'eval'                    => array('submitOnChange'=>true)
+	'eval'                    => array('submitOnChange'=>true),
+	'sql'                     => "char(1) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_useredirectcontest'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['lm_useredirectcontest'],
 	'exclude'                 => false,
 	'inputType'               => 'checkbox',
-	'eval'                    => array('submitOnChange'=>true)
+	'eval'                    => array('submitOnChange'=>true),
+	'sql'                     => "char(1) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_template'] = array
 (
@@ -173,7 +184,8 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['lm_template'] = array
 	'inputType'               => 'select',
 	'eval'                    => array('mandatory'=>true),
 	'options'				  => array('div','table'),
-	'reference'				  => &$GLOBALS['TL_LANG']['tl_content']['lm_template']['reference']
+	'reference'				  => &$GLOBALS['TL_LANG']['tl_content']['lm_template']['reference'],
+	'sql'                     => "varchar(255) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_tablefields'] = array
 (
@@ -182,28 +194,32 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['lm_tablefields'] = array
 	'inputType'               => 'checkboxWizard',
 	'eval'                    => array('mandatory'=>true,'multiple'=>true),
 	'options'				  => array('logo','name','matches','w','d','l','rp','rm','rd','pp','pm','pd','pt','pen'),
-	'reference'				  => &$GLOBALS['TL_LANG']['tl_content']['lm_tablefields']['reference']
+	'reference'				  => &$GLOBALS['TL_LANG']['tl_content']['lm_tablefields']['reference'],
+	'sql'                     => "blob NULL"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_usefixedteam'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['lm_usefixedteam'],
 	'exclude'                 => false,
 	'inputType'               => 'checkbox',
-	'eval'                    => array('submitOnChange'=>true)
+	'eval'                    => array('submitOnChange'=>true),
+	'sql'                     => "char(1) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_usefixedcontest'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['lm_usefixedcontest'],
 	'exclude'                 => false,
 	'inputType'               => 'checkbox',
-	'eval'                    => array('submitOnChange'=>true)
+	'eval'                    => array('submitOnChange'=>true),
+	'sql'                     => "char(1) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_usefixedmatch'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['lm_usefixedmatch'],
 	'exclude'                 => false,
 	'inputType'               => 'checkbox',
-	'eval'                    => array('submitOnChange'=>true)
+	'eval'                    => array('submitOnChange'=>true),
+	'sql'                     => "char(1) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_match'] = array
 (
@@ -211,14 +227,16 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['lm_match'] = array
 	'exclude'                 => false,
 	'inputType'               => 'select',
 	'eval'                    => array('mandatory'=>true),
-	'options_callback'        => array('tl_content_lm', 'getMatches')
+	'options_callback'        => array('tl_content_lm', 'getMatches'),
+	'sql'                     => "int(10) NOT NULL default '0'"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_usefixedplayer'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['lm_usefixedplayer'],
 	'exclude'                 => false,
 	'inputType'               => 'checkbox',
-	'eval'                    => array('submitOnChange'=>true)
+	'eval'                    => array('submitOnChange'=>true),
+	'sql'                     => "char(1) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_player'] = array
 (
@@ -226,14 +244,16 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['lm_player'] = array
 	'exclude'                 => false,
 	'inputType'               => 'select',
 	'eval'                    => array('mandatory'=>true),
-	'options_callback'        => array('tl_content_lm', 'getPlayers')
+	'options_callback'        => array('tl_content_lm', 'getPlayers'),
+	'sql'                     => "int(10) NOT NULL default '0'"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_se_friendly'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['lm_se_friendly'],
 	'exclude'                 => false,
 	'inputType'               => 'checkbox',
-	'eval'                    => array('mandatory'=>false)
+	'eval'                    => array('mandatory'=>false),
+	'sql'                     => "char(1) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_reporttype'] = array
 (
@@ -242,21 +262,24 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['lm_reporttype'] = array
 	'inputType'               => 'select',
 	'eval'                    => array('mandatory'=>true),
 	'options'				  => array('P','G','A'),
-	'reference'				  => &$GLOBALS['TL_LANG']['tl_content']['lm_reporttype']['reference']
+	'reference'				  => &$GLOBALS['TL_LANG']['tl_content']['lm_reporttype']['reference'],
+	'sql'                     => "char(1) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_datefrom'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['lm_datefrom'],
 	'exclude'                 => false,
 	'inputType'               => 'text',
-	'eval'                    => array('mandatory'=>false, 'rgxp'=>'date', 'datepicker'=>$this->getDatePickerString())
+	'eval'                    => array('mandatory'=>false, 'rgxp'=>'date', 'datepicker'=>$this->getDatePickerString()),
+	'sql'                     => "int(10) NOT NULL default '0'"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_dateto'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['lm_dateto'],
 	'exclude'                 => false,
 	'inputType'               => 'text',
-	'eval'                    => array('mandatory'=>false, 'rgxp'=>'date', 'datepicker'=>$this->getDatePickerString())
+	'eval'                    => array('mandatory'=>false, 'rgxp'=>'date', 'datepicker'=>$this->getDatePickerString()),
+	'sql'                     => "int(10) NOT NULL default '0'"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_linktype_player'] = array
 (
@@ -265,7 +288,8 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['lm_linktype_player'] = array
 	'inputType'               => 'select',
 	'eval'                    => array('mandatory'=>true,'submitOnChange'=>true),
 	'options'				  => array('NOL','FIX','INT','EXT'),
-	'reference'				  => &$GLOBALS['TL_LANG']['tl_content']['lm_linktypes']['reference']
+	'reference'				  => &$GLOBALS['TL_LANG']['tl_content']['lm_linktypes']['reference'],
+	'sql'                     => "char(3) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_linktype_team'] = array
 (
@@ -274,7 +298,8 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['lm_linktype_team'] = array
 	'inputType'               => 'select',
 	'eval'                    => array('mandatory'=>true,'submitOnChange'=>true),
 	'options'				  => array('NOL','FIX','INT','EXT'),
-	'reference'				  => &$GLOBALS['TL_LANG']['tl_content']['lm_linktypes']['reference']
+	'reference'				  => &$GLOBALS['TL_LANG']['tl_content']['lm_linktypes']['reference'],
+	'sql'                     => "char(3) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_linktype_match'] = array
 (
@@ -283,7 +308,8 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['lm_linktype_match'] = array
 	'inputType'               => 'select',
 	'eval'                    => array('mandatory'=>true,'submitOnChange'=>true),
 	'options'				  => array('NOL','FIX','INT','EXT'),
-	'reference'				  => &$GLOBALS['TL_LANG']['tl_content']['lm_linktypes']['reference']
+	'reference'				  => &$GLOBALS['TL_LANG']['tl_content']['lm_linktypes']['reference'],
+	'sql'                     => "char(3) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_linktype_contest'] = array
 (
@@ -292,35 +318,44 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['lm_linktype_contest'] = array
 	'inputType'               => 'select',
 	'eval'                    => array('mandatory'=>true,'submitOnChange'=>true),
 	'options'				  => array('NOL','FIX','INT','EXT'),
-	'reference'				  => &$GLOBALS['TL_LANG']['tl_content']['lm_linktypes']['reference']
+	'reference'				  => &$GLOBALS['TL_LANG']['tl_content']['lm_linktypes']['reference'],
+	'sql'                     => "char(3) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_link_player_new_window'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['lm_link_new_window'],
 	'exclude'                 => false,
 	'inputType'               => 'checkbox',
-	'eval'                    => array()
+	'eval'                    => array(),
+	'sql'                     => "char(1) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_link_team_new_window'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['lm_link_new_window'],
 	'exclude'                 => false,
 	'inputType'               => 'checkbox',
-	'eval'                    => array()
+	'eval'                    => array(),
+	'sql'                     => "char(1) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_link_match_new_window'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['lm_link_new_window'],
 	'exclude'                 => false,
 	'inputType'               => 'checkbox',
-	'eval'                    => array()
+	'eval'                    => array(),
+	'sql'                     => "char(1) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['lm_link_contest_new_window'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['lm_link_new_window'],
 	'exclude'                 => false,
 	'inputType'               => 'checkbox',
-	'eval'                    => array()
+	'eval'                    => array(),
+	'sql'                     => "char(1) NOT NULL default ''"
+);
+$GLOBALS['TL_DCA']['tl_content']['fields']['lm_css_classes'] = array
+(
+	'sql'                     => "blob NULL"
 );
 class tl_content_lm extends Backend
 {
