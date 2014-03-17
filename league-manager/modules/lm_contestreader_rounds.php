@@ -15,7 +15,7 @@
 /**
  * Namespace
  */
-namespace league-manager;
+namespace leaguemanager;
 
 
 /**
@@ -25,7 +25,7 @@ namespace league-manager;
  * @author     Andreas Koob
  * @package    Controller
  */
-class lm_contestreader_rounds extends ContentElement
+class lm_contestreader_rounds extends \ContentElement
 {
 
 	/**

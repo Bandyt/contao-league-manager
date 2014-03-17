@@ -15,7 +15,7 @@
 /**
  * Namespace
  */
-namespace league-manager;
+namespace leaguemanager;
 
 
 /**

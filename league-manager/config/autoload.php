@@ -16,7 +16,7 @@
  */
 ClassLoader::addNamespaces(array
 (
-	'league-manager',
+	'leaguemanager',
 ));
 
 
@@ -25,21 +25,23 @@ ClassLoader::addNamespaces(array
  */
 ClassLoader::addClasses(array
 (
-	'league-manager\lm_fixes'                    => 'system/modules/league-manager/lm_fixes.php',
+	// Classes
+	'leaguemanager\lm_fixes'                    => 'system/modules/league-manager/classes/lm_fixes.php',
+
 	// Modules
-	'league-manager\lm_contestreader_basic'      => 'system/modules/league-manager/modules/lm_contestreader_basic.php',
-	'league-manager\lm_contestreader_crosstable' => 'system/modules/league-manager/modules/lm_contestreader_crosstable.php',
-	'league-manager\lm_contestreader_matches'    => 'system/modules/league-manager/modules/lm_contestreader_matches.php',
-	'league-manager\lm_contestreader_rounds'     => 'system/modules/league-manager/modules/lm_contestreader_rounds.php',
-	'league-manager\lm_contestreader_table'      => 'system/modules/league-manager/modules/lm_contestreader_table.php',
-	'league-manager\lm_contestreader_teams'      => 'system/modules/league-manager/modules/lm_contestreader_teams.php',
-	'league-manager\lm_matchreader_basic'        => 'system/modules/league-manager/modules/lm_matchreader_basic.php',
-	'league-manager\lm_matchreader_events'       => 'system/modules/league-manager/modules/lm_matchreader_events.php',
-	'league-manager\lm_matchreader_reports'      => 'system/modules/league-manager/modules/lm_matchreader_reports.php',
-	'league-manager\lm_playerreader_basic'       => 'system/modules/league-manager/modules/lm_playerreader_basic.php',
-	'league-manager\lm_teamreader_basic'         => 'system/modules/league-manager/modules/lm_teamreader_basic.php',
-	'league-manager\lm_teamreader_matches'       => 'system/modules/league-manager/modules/lm_teamreader_matches.php',
-	'league-manager\lm_teamreader_nextmatch'     => 'system/modules/league-manager/modules/lm_teamreader_nextmatch.php',
+	'leaguemanager\lm_contestreader_basic'      => 'system/modules/league-manager/modules/lm_contestreader_basic.php',
+	'leaguemanager\lm_contestreader_crosstable' => 'system/modules/league-manager/modules/lm_contestreader_crosstable.php',
+	'leaguemanager\lm_contestreader_matches'    => 'system/modules/league-manager/modules/lm_contestreader_matches.php',
+	'leaguemanager\lm_contestreader_rounds'     => 'system/modules/league-manager/modules/lm_contestreader_rounds.php',
+	'leaguemanager\lm_contestreader_table'      => 'system/modules/league-manager/modules/lm_contestreader_table.php',
+	'leaguemanager\lm_contestreader_teams'      => 'system/modules/league-manager/modules/lm_contestreader_teams.php',
+	'leaguemanager\lm_matchreader_basic'        => 'system/modules/league-manager/modules/lm_matchreader_basic.php',
+	'leaguemanager\lm_matchreader_events'       => 'system/modules/league-manager/modules/lm_matchreader_events.php',
+	'leaguemanager\lm_matchreader_reports'      => 'system/modules/league-manager/modules/lm_matchreader_reports.php',
+	'leaguemanager\lm_playerreader_basic'       => 'system/modules/league-manager/modules/lm_playerreader_basic.php',
+	'leaguemanager\lm_teamreader_basic'         => 'system/modules/league-manager/modules/lm_teamreader_basic.php',
+	'leaguemanager\lm_teamreader_matches'       => 'system/modules/league-manager/modules/lm_teamreader_matches.php',
+	'leaguemanager\lm_teamreader_nextmatch'     => 'system/modules/league-manager/modules/lm_teamreader_nextmatch.php',
 ));
 
 

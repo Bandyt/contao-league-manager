@@ -15,7 +15,7 @@
 /**
  * Namespace
  */
-namespace league-manager;
+namespace leaguemanager;
 
 /**
  * Class lm_matchreader_events
