@@ -144,7 +144,7 @@ $GLOBALS['TL_DCA']['tl_lm_contest_penalties'] = array
 			'exclude'                 => false,
 			'inputType'               => 'select',
 			'options_callback' 		  => array('tl_lm_contest_penalties', 'getTeams'),
-			'sql'					  => "int(10) NULL default NULL"
+			'sql'					  => "int(10) NOT NULL default '0'"
 		),
 		'points' => array
 		(

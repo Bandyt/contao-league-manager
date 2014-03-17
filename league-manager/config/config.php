@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php
 
 /**
  * Contao Open Source CMS
@@ -36,26 +36,25 @@
 */
  $GLOBALS['BE_MOD']['league-manager'] = array
  (
-	 
 	 'tl_lm_teams' => array
 	 (
 	    'tables' => array('tl_lm_teams'),
-		'icon'   => 'system/modules/league-manager/images/teams.png'
+		'icon'   => 'system/modules/league-manager/assets/teams.png'
 	 ),
 	 'tl_lm_players' => array
 	 (
 	    'tables' => array('tl_lm_players','tl_lm_players_to_team'),
-		'icon'   => 'system/modules/league-manager/images/player.png'
+		'icon'   => 'system/modules/league-manager/assets/player.png'
 	 ),
 	 'tl_lm_clubs' => array
 	 (
 	    'tables' => array('tl_lm_clubs','tl_lm_teams_to_club'),
-		'icon'   => 'system/modules/league-manager/images/club.png'
+		'icon'   => 'system/modules/league-manager/assets/club.png'
 	 ),
 	 'tl_lm_contests' => array
 	 (
         'tables' => array('tl_lm_contests','tl_lm_rounds','tl_lm_matches','tl_lm_match_reports','tl_lm_match_events','tl_lm_contest_penalties'),
-        'icon'   => 'system/modules/league-manager/images/ball.gif',
+        'icon'   => 'system/modules/league-manager/assets/ball.gif',
 		'fixMatches' => array('lm_fixes','fixMatches')
 	 )
 	 
@@ -65,9 +64,8 @@ $GLOBALS['BE_MOD']['league-manager-settings'] = array
 	'tl_lm_event_masters' => array
 	 (
 	    'tables' => array('tl_lm_event_masters'),
-		'icon'   => 'system/modules/league-manager/images/ball.gif'
-	 ),
-	 
+		'icon'   => 'system/modules/league-manager/assets/ball.gif'
+	 )
 );
 /**
  * -------------------------------------------------------------------------

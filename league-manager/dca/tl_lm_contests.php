@@ -240,7 +240,7 @@ $GLOBALS['TL_DCA']['tl_lm_contests'] = array
 			'exclude'                 => false,
 			'inputType'               => 'text',
 			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50'),
-			'sql'                     => "int(10) NULL default NULL"
+			'sql'                     => "int(10) NOT NULL default '0'"
 		),
 		'home_wins_points_away' => array
 		(
@@ -248,7 +248,7 @@ $GLOBALS['TL_DCA']['tl_lm_contests'] = array
 			'exclude'                 => false,
 			'inputType'               => 'text',
 			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50'),
-			'sql'                     => "int(10) NULL default NULL"
+			'sql'                     => "int(10) NOT NULL default '0'"
 		),
 		'draw_points_home' => array
 		(
@@ -256,7 +256,7 @@ $GLOBALS['TL_DCA']['tl_lm_contests'] = array
 			'exclude'                 => false,
 			'inputType'               => 'text',
 			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50'),
-			'sql'                     => "int(10) NULL default NULL"
+			'sql'                     => "int(10) NOT NULL default '0'"
 		),
 		'draw_points_away' => array
 		(
@@ -264,7 +264,7 @@ $GLOBALS['TL_DCA']['tl_lm_contests'] = array
 			'exclude'                 => false,
 			'inputType'               => 'text',
 			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50'),
-			'sql'                     => "int(10) NULL default NULL"
+			'sql'                     => "int(10) NOT NULL default '0'"
 		),
 		'away_wins_points_home' => array
 		(
@@ -272,7 +272,7 @@ $GLOBALS['TL_DCA']['tl_lm_contests'] = array
 			'exclude'                 => false,
 			'inputType'               => 'text',
 			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50'),
-			'sql'                     => "int(10) NULL default NULL"
+			'sql'                     => "int(10) NOT NULL default '0'"
 		),
 		'away_wins_points_away' => array
 		(
@@ -280,7 +280,7 @@ $GLOBALS['TL_DCA']['tl_lm_contests'] = array
 			'exclude'                 => false,
 			'inputType'               => 'text',
 			'eval'                    => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>digit, 'tl_class'=>'w50'),
-			'sql'                     => "int(10) NULL default NULL"
+			'sql'                     => "int(10) NOT NULL default '0'"
 		),
 		'create_rounds' => array
 		(

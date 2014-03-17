@@ -34,6 +34,17 @@
  */
 $GLOBALS['TL_DCA']['tl_lm_team_to_contest'] = array
 (
+	'config' => array
+	(
+		'dataContainer'               => 'Table',
+		'sql' => array
+		(
+			'keys' => array
+			(
+				
+			)
+		)
+	),
 	// Fields
 	'fields' => array
 	(

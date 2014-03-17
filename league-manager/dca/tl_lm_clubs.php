@@ -173,7 +173,7 @@ $GLOBALS['TL_DCA']['tl_lm_clubs'] = array
 			'exclude'                 => false,
 			'inputType'               => 'text',
 			'eval'                    => array('mandatory'=>false, 'maxlength'=>255, 'rgxp'=>'url'),
-			'sql'                     => "varchar(255) NULL default ''"
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'hasinternal_page' => array
 		(
@@ -189,7 +189,7 @@ $GLOBALS['TL_DCA']['tl_lm_clubs'] = array
 			'exclude'                 => false,
 			'inputType'               => 'fileTree',
 			'eval'                    => array('mandatory'=>false, 'fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true),
-			'sql'                     => "varchar(255) NULL default ''"
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'ownclub' => array
 		(
